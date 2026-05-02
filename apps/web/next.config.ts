@@ -15,7 +15,8 @@ const DAEMON_ORIGIN = `http://127.0.0.1:${DAEMON_PORT}`;
 // owns the Next.js SSR server and proxies daemon routes at runtime.
 const isProd = process.env.NODE_ENV !== 'development';
 const isServerOutput = process.env.OD_WEB_OUTPUT_MODE === 'server';
-const shouldStaticExport = isProd && !isServerOutput;
+const isVercel = !!process.env.VERCEL;
+const shouldStaticExport = (isProd && !isServerOutput) || isVercel;
 
 const WEB_ROOT = dirname(fileURLToPath(import.meta.url));
 const toPosixPath = (value: string) => value.replaceAll('\\', '/');
