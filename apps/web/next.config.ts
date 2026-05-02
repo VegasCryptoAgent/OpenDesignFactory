@@ -37,22 +37,16 @@ function resolveDevTsconfigPath() {
 const DEV_TSCONFIG_PATH = resolveDevTsconfigPath();
 
 const nextConfig: NextConfig = {
+  output: 'export',
   allowedDevOrigins: ['127.0.0.1'],
   reactStrictMode: true,
   ...(DEV_TSCONFIG_PATH ? { typescript: { tsconfigPath: DEV_TSCONFIG_PATH } } : {}),
   // Keep the bundle output predictable so the daemon's STATIC_DIR can point
   // at it without any glob trickery.
   distDir: DIST_DIR,
-  ...(shouldStaticExport
-    ? {
-        output: 'export' as const,
-        // `next export` skips trailing slashes by default; opting in keeps
-        // the daemon's static fallback simple (every directory has its own
-        // index.html on disk).
-        trailingSlash: true,
-        images: { unoptimized: true },
-      }
-    : !isProd
+  images: { unoptimized: true },
+  trailingSlash: true,
+  ...(!isProd
       ? {
         async rewrites() {
           // In dev we run the daemon on a sibling port; proxy the app API
