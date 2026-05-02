@@ -37,13 +37,13 @@ export const ptBR: Dict = {
   'common.daysShort': '{n} d',
   'common.untitled': 'Sem título',
 
-  'app.brand': 'Open Design Factory',
+  'app.brand': 'Design Factory',
   'app.brandPill': 'Prévia de pesquisa',
   'app.brandSubtitle': 'por 6Frame Studio',
   'app.welcomeLoading': 'Carregando área de trabalho…',
 
   'settings.welcomeKicker': 'Bem-vindo',
-  'settings.welcomeTitle': 'Configure o Open Design Factory',
+  'settings.welcomeTitle': 'Configure o Design Factory',
   'settings.welcomeSubtitle':
     'Escolha como você quer executar as gerações. Você pode mudar isso a qualquer momento no botão Configurações da barra superior.',
   'settings.kicker': 'Configurações',

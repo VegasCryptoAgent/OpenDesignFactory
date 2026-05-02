@@ -37,13 +37,13 @@ export const ru: Dict = {
   'common.daysShort': '{n}д',
   'common.untitled': 'Без названия',
 
-  'app.brand': 'Open Design Factory',
+  'app.brand': 'Design Factory',
   'app.brandPill': 'Исследовательский превью',
   'app.brandSubtitle': 'от 6Frame Studio',
   'app.welcomeLoading': 'Загрузка рабочего пространства…',
 
   'settings.welcomeKicker': 'Добро пожаловать',
-  'settings.welcomeTitle': 'Настройка Open Design Factory',
+  'settings.welcomeTitle': 'Настройка Design Factory',
   'settings.welcomeSubtitle':
     'Выберите, как запускать генерации. Вы можете изменить это в любое время через кнопку Настройки в верхней панели.',
   'settings.kicker': 'Настройки',

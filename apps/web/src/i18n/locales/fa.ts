@@ -37,13 +37,13 @@ export const fa: Dict = {
   'common.daysShort': '{n}ر',
   'common.untitled': 'بدون عنوان',
 
-  'app.brand': 'Open Design Factory',
+  'app.brand': 'Design Factory',
   'app.brandPill': 'پیش‌نمایش تحقیقاتی',
   'app.brandSubtitle': 'توسط 6Frame Studio',
   'app.welcomeLoading': 'در حال بارگذاری فضای کاری…',
 
   'settings.welcomeKicker': 'خوش آمدید',
-  'settings.welcomeTitle': 'Open Design Factory را راه‌اندازی کنید',
+  'settings.welcomeTitle': 'Design Factory را راه‌اندازی کنید',
   'settings.welcomeSubtitle':
     'نحوه اجرای تولیدات را انتخاب کنید. می‌توانید هر زمان از دکمه تنظیمات در نوار بالا این را تغییر دهید.',
   'settings.kicker': 'تنظیمات',
