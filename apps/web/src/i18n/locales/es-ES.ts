@@ -37,13 +37,13 @@ export const esES: Dict = {
   'common.daysShort': '{n} d',
   'common.untitled': 'Sin título',
 
-  'app.brand': 'Open Design',
+  'app.brand': 'Open Design Factory',
   'app.brandPill': 'Vista previa de investigación',
-  'app.brandSubtitle': 'por Nexu Labs',
+  'app.brandSubtitle': 'por 6Frame Studio',
   'app.welcomeLoading': 'Cargando espacio de trabajo…',
 
   'settings.welcomeKicker': 'Bienvenido',
-  'settings.welcomeTitle': 'Configura Open Design',
+  'settings.welcomeTitle': 'Configura Open Design Factory',
   'settings.welcomeSubtitle':
     'Elige cómo quieres ejecutar las generaciones. Puedes cambiarlo en cualquier momento desde el botón Ajustes en la barra superior.',
   'settings.kicker': 'Ajustes',

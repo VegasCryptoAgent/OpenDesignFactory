@@ -37,13 +37,13 @@ export const ja: Dict = {
   'common.daysShort': '{n}日',
   'common.untitled': '無題',
 
-  'app.brand': 'Open Design',
+  'app.brand': 'Open Design Factory',
   'app.brandPill': 'リサーチプレビュー',
-  'app.brandSubtitle': 'by Nexu Labs',
+  'app.brandSubtitle': 'by 6Frame Studio',
   'app.welcomeLoading': 'ワークスペースを読み込み中…',
 
   'settings.welcomeKicker': 'ようこそ',
-  'settings.welcomeTitle': 'Open Design を設定',
+  'settings.welcomeTitle': 'Open Design Factory を設定',
   'settings.welcomeSubtitle':
     '生成の実行方法を選んでください。この設定はいつでもトップバーの設定ボタンから変更できます。',
   'settings.kicker': '設定',
