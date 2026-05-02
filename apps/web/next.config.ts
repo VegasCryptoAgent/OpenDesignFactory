@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'export',
-  distDir: 'out-build', // Use a unique build dir to avoid any 'out' collision
+  distDir: 'out',
   trailingSlash: true,
   images: {
     unoptimized: true,
