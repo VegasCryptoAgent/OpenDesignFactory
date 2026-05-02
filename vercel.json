@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm --filter @open-design/web build",
+  "buildCommand": "pnpm --filter @open-design/web build && echo '=== pwd ===' && pwd && echo '=== ls apps/web/out ===' && ls apps/web/out/ 2>&1 || true && echo '=== ls out ===' && ls out/ 2>&1 || true",
   "installCommand": "pnpm install --filter @open-design/web...",
   "outputDirectory": "apps/web/out",
   "framework": null
