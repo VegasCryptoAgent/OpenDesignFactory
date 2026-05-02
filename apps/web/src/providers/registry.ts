@@ -17,9 +17,34 @@ import type {
 } from '../types';
 import type { ArtifactManifest } from '../artifacts/types';
 
+const DAEMON_LOCAL_ORIGIN = 'http://127.0.0.1:7456';
+
+async function fetchWithFallback(path: string, init?: RequestInit): Promise<Response> {
+  // 1. Try the current origin (standard behavior for local dev or same-origin proxy)
+  try {
+    const resp = await fetch(path, init);
+    if (resp.ok) return resp;
+  } catch {
+    // ignore and fallback
+  }
+
+  // 2. If we're on a non-localhost origin (like Vercel), try talking to the local daemon directly.
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    try {
+      const resp = await fetch(`${DAEMON_LOCAL_ORIGIN}${path}`, init);
+      return resp;
+    } catch {
+      // ignore and return failure
+    }
+  }
+
+  // Final fallback: return a failed response
+  return new Response(null, { status: 503, statusText: 'Service Unavailable' });
+}
+
 export async function fetchAgents(): Promise<AgentInfo[]> {
   try {
-    const resp = await fetch('/api/agents');
+    const resp = await fetchWithFallback('/api/agents');
     if (!resp.ok) return [];
     const json = (await resp.json()) as { agents: AgentInfo[] };
     return json.agents ?? [];
@@ -30,7 +55,7 @@ export async function fetchAgents(): Promise<AgentInfo[]> {
 
 export async function fetchSkills(): Promise<SkillSummary[]> {
   try {
-    const resp = await fetch('/api/skills');
+    const resp = await fetchWithFallback('/api/skills');
     if (!resp.ok) return [];
     const json = (await resp.json()) as { skills: SkillSummary[] };
     return json.skills ?? [];
@@ -41,7 +66,7 @@ export async function fetchSkills(): Promise<SkillSummary[]> {
 
 export async function fetchSkill(id: string): Promise<SkillDetail | null> {
   try {
-    const resp = await fetch(`/api/skills/${encodeURIComponent(id)}`);
+    const resp = await fetchWithFallback(`/api/skills/${encodeURIComponent(id)}`);
     if (!resp.ok) return null;
     return (await resp.json()) as SkillDetail;
   } catch {
@@ -51,7 +76,7 @@ export async function fetchSkill(id: string): Promise<SkillDetail | null> {
 
 export async function fetchDesignSystems(): Promise<DesignSystemSummary[]> {
   try {
-    const resp = await fetch('/api/design-systems');
+    const resp = await fetchWithFallback('/api/design-systems');
     if (!resp.ok) return [];
     const json = (await resp.json()) as { designSystems: DesignSystemSummary[] };
     return json.designSystems ?? [];
@@ -62,7 +87,7 @@ export async function fetchDesignSystems(): Promise<DesignSystemSummary[]> {
 
 export async function fetchDesignSystem(id: string): Promise<DesignSystemDetail | null> {
   try {
-    const resp = await fetch(`/api/design-systems/${encodeURIComponent(id)}`);
+    const resp = await fetchWithFallback(`/api/design-systems/${encodeURIComponent(id)}`);
     if (!resp.ok) return null;
     return (await resp.json()) as DesignSystemDetail;
   } catch {
@@ -72,7 +97,7 @@ export async function fetchDesignSystem(id: string): Promise<DesignSystemDetail 
 
 export async function fetchPromptTemplates(): Promise<PromptTemplateSummary[]> {
   try {
-    const resp = await fetch('/api/prompt-templates');
+    const resp = await fetchWithFallback('/api/prompt-templates');
     if (!resp.ok) return [];
     const json = (await resp.json()) as { promptTemplates: PromptTemplateSummary[] };
     return json.promptTemplates ?? [];
@@ -86,7 +111,7 @@ export async function fetchPromptTemplate(
   id: string,
 ): Promise<PromptTemplateDetail | null> {
   try {
-    const resp = await fetch(
+    const resp = await fetchWithFallback(
       `/api/prompt-templates/${encodeURIComponent(surface)}/${encodeURIComponent(id)}`,
     );
     if (!resp.ok) return null;
@@ -99,7 +124,7 @@ export async function fetchPromptTemplate(
 
 export async function daemonIsLive(): Promise<boolean> {
   try {
-    const resp = await fetch('/api/health');
+    const resp = await fetchWithFallback('/api/health');
     return resp.ok;
   } catch {
     return false;
